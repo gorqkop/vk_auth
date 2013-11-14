@@ -1,10 +1,11 @@
 __author__ = 'Gor'
+'''For Python 3.x'''
 import urllib.request as ur
 import urllib.parse as up
 import http.cookiejar as hc
 import lxml.html, re
 import requests as r
-#http://habrahabr.ru/post/143972/   and    https://github.com/dzhioev/vk_api_auth/blob/master/vk_auth.py
+#Inspired by http://habrahabr.ru/post/143972/   and    https://github.com/dzhioev/vk_api_auth/blob/master/vk_auth.py
 
 class parser:
     def __init__(self, response):
@@ -17,8 +18,6 @@ class parser:
         for i in html.xpath('//input'):
             if i.get("type") in ["hidden", "text", "password"]:
                 self.params[i.get("name")] = i.get("value")
-
-
 
 def auth(email, password, client_id, scope):
     opener = ur.build_opener(ur.HTTPCookieProcessor(hc.CookieJar()), ur.HTTPRedirectHandler())
