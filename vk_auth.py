@@ -18,7 +18,10 @@ class parser:
         for i in html.xpath('//input'):
             if i.get("type") in ["hidden", "text", "password"]:
                 self.params[i.get("name")] = i.get("value")
-
+#email - логин вКонтаке
+#password - пароль от вКонтакте
+#client_id - идентификатор Вашего приложения (нужно создать если нет) https://vk.com/editapp?act=create
+#scope - сумма прав доступа https://vk.com/dev/permissions
 def auth(email, password, client_id, scope):
     opener = ur.build_opener(ur.HTTPCookieProcessor(hc.CookieJar()), ur.HTTPRedirectHandler())
     response = r.get("http://oauth.vk.com/oauth/authorize?redirect_uri=http://oauth.vk.com/blank.html&response_type=token&client_id=%s&scope=%s&display=wap"%(str(client_id), str(scope))).content
